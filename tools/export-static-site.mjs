@@ -37,6 +37,10 @@ function addDemoMetadata(html, pathname) {
     const banner = '<aside class="demo-notice" role="status">Демонстрационная версия сайта. Информация показана как снимок и может отличаться от актуальной.</aside>';
     const style = '<style>.demo-notice{position:sticky;top:0;z-index:10000;padding:.8rem 1.25rem;background:#0c3d7a;color:#fff;text-align:center;font:600 14px/1.4 system-ui,sans-serif}.demo-document-unavailable{color:#60718d;font-style:italic}</style>';
     let result = html.replace(/<meta\s+name=["']robots["'][^>]*>/i, '');
+    result = result.replace(
+        /<a\s+href=["']https:\/\/contest\.sarov\.msu\.ru\/["']\s+target=["']_blank["']\s+rel=["']noopener noreferrer["']\s*>/gi,
+        `<a href="${publicUrl}/school-tamm/">`,
+    );
     result = result.replace(/<\/head>/i, `${marker}${style}</head>`);
     result = result.replace(/<body([^>]*)>/i, `<body$1>${banner}`);
     result = result.replaceAll(origin, publicUrl);
